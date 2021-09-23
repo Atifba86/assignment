@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MVCTutorialModelStoreContainer" CdmEntityContainer="MVCTutorialEntities">
+    <EntitySetMapping Name="StudentInfoes">
+      <EntityTypeMapping TypeName="MVCTutorialModel.StudentInfo">
+        <MappingFragment StoreEntitySet="StudentInfo">
+          <ScalarProperty Name="StuId" ColumnName="StuId" />
+          <ScalarProperty Name="StuName" ColumnName="StuName" />
+          <ScalarProperty Name="Semester" ColumnName="Semester" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

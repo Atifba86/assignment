@@ -1,0 +1,62 @@
+﻿@model IEnumerable<SearchFunctionalityWithJquery.Models.StudentInfo>
+           <br /><br />
+<div class="container">
+    <b>Search By : </b>
+    <select id="SearchBy">
+        <option value="Name">Name</option>
+        <option value="ID">ID</option>
+    </select><br /><br />
+    @Html.TextBox("Search")<input type="submit" id="SearchBtn" value="Search" /><br /><br />
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Semester</th>
+            </tr>
+        </thead>
+        <tbody id="DataSearching">
+            @foreach (var Item in Model)
+            {
+                <tr>
+                    <td>@Item.StuId</td>
+                    <td>@Item.StuName</td>
+                    <td>@Item.Semester</td>
+                </tr>
+            }
+            
+        </tbody>
+    </table>
+</div>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#SearchBtn").click(function () {
+            var SearchBy = $("#SearchBy").val();
+            var SearchValue = $("#Search").val();
+            var SetData = $("#DataSearching");
+            SetData.html("");
+            $.ajax({
+                type: "post",
+                url: "/Home/GetSearchingData?SearchBy=" + SearchBy + "&SearchValue=" + SearchValue,
+                contentType: "html",
+                success: function (result) {
+                    if (result.length == 0) {
+                        SetData.append('<tr style="color:red"><td colspan="3">No Match Data</td></tr>')
+                    }
+                    else {
+                        $.each(result, function (index, value) {
+                            var Data = "<tr>" +
+                                "<td>" + value.StuId + "</td>" +
+                                "<td>" + value.StuName + "</td>" +
+                                "<td>" + value.Semester + "</td>" +
+                                "</tr>";
+                            SetData.append(Data);
+
+                        });
+                    }
+                }
+            });
+        });
+    });
+</script>

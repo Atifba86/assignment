@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MVCTutorialModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="StudentInfo">
+    <Key>
+      <PropertyRef Name="StuId" />
+    </Key>
+    <Property Name="StuId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StuName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Semester" Type="nvarchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="MVCTutorialModelStoreContainer">
+    <EntitySet Name="StudentInfo" EntityType="Self.StudentInfo" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>
